@@ -14,7 +14,7 @@ public class GameOfLifeUnitTest {
 
     @Before
     public void setUp() throws Exception {
-        game = new Game();
+        game = new Game(5, 5);
         game.init();
         greed = game.getGreed();
         nextGenerationGreed = game.getNextGenerationGreed();

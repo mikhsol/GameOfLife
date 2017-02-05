@@ -1,16 +1,40 @@
 package com.nwps.gameoflife;
 
+import java.util.Random;
+
 class Game {
     private int rows;
     private int cols;
     private int[][] greed;
     private int[][] nextGenerationGreed;
 
+    Game(int rows, int cols) {
+        this.rows = rows;
+        this.cols = cols;
+    }
+
     void init() {
-        setRows(5);
-        setCols(5);
         greed = new int[rows][cols];
         nextGenerationGreed = new int[rows][cols];
+    }
+
+    void fillGridRandomly(double density) throws WrongGridDensityException {
+        if (density > 1.0 || density < 0.0)
+            throw new WrongGridDensityException(density);
+        int cells = (int) (rows > cols ? density*rows : density*cols);
+        aliveCellsOnInitRandomly(cells);
+    }
+
+    private void aliveCellsOnInitRandomly(int cells) {
+        Random rand = new Random();
+        while (cells > 0) {
+            int r = rand.nextInt(rows);
+            int c = rand.nextInt(cols);
+            if (!isAlive(r, c)) {
+                makeAliveOnInit(r, c);
+                cells--;
+            }
+        }
     }
 
     int getRows() {
