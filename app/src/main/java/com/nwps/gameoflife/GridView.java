@@ -11,7 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-class GridView extends View {
+public class GridView extends View {
     public static final String KEY_PREF_ROWS = "pref_rows";
     public static final String KEY_PREF_COLS = "pref_cols";
     public static final String KEY_PREF_DENS = "pref_dens";
