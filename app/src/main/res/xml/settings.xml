@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference android:key="ROWS_VARIABLE"
+    <EditTextPreference
+        android:key="pref_rows"
         android:title="Rows"
         android:summary="Amount rows on the grid"
         android:dialogTitle="Rows"
-        android:defaultValue="5"
-        android:inputType="number" />
-    <EditTextPreference android:key="COLUMNS_VARIABLE"
+        android:defaultValue="150"
+        android:inputType="number"
+        android:maxLength="5"/>
+    <EditTextPreference android:key="pref_cols"
         android:title="Columns"
         android:summary="Amount columns on the grid"
         android:dialogTitle="Columns"
-        android:defaultValue="5"
-        android:inputType="number" />
-    <EditTextPreference android:key="DENSITY_VARIABLE"
+        android:defaultValue="150"
+        android:inputType="number"
+        android:maxLength="5"/>
+    <EditTextPreference android:key="pref_dens"
         android:title="Initial Density"
         android:summary="Density of alive cells in first generation (percents)"
         android:dialogTitle="Density"
-        android:defaultValue="30"
-        android:inputType="numberDecimal" />
+        android:defaultValue="15"
+        android:inputType="number"
+        android:maxLength="2"/>
 </PreferenceScreen>

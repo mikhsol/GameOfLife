@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".GridActivity"
             android:label="@string/grid_title" />
+        <activity android:name=".SettingsActivity"
+            android:label="Settings"/>
     </application>
 
 </manifest>
