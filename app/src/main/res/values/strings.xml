@@ -7,7 +7,7 @@
     <string name="about_label">About</string>
     <string name="exit_label">Exit</string>
     <string name="about_title">Game Of Life</string>
-    <string name="about_content">The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</string>
+    <string name="about_content"><b>The Game of Life</b>, also known simply as <b>Life</b>, is a cellular automaton devised by the British mathematician <b>John Horton Conway</b> in 1970.</string>
     <string name="grid_title">Game Of Life</string>
     <string name="settings_label">Settings</string>
     <string name="settings_shortcut">s</string>
