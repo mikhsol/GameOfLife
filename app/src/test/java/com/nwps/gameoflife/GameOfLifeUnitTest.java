@@ -9,32 +9,32 @@ import static org.junit.Assert.assertThat;
 public class GameOfLifeUnitTest {
 
     private Game game;
-    private int[][] greed;
-    private int[][] nextGenerationGreed;
+    private int[][] grid;
+    private int[][] nextGenerationgrid;
 
     @Before
     public void setUp() throws Exception {
         game = new Game(5, 5);
         game.init();
-        greed = game.getGreed();
-        nextGenerationGreed = game.getNextGenerationGreed();
+        grid = game.getGrid();
+        nextGenerationgrid = game.getNextGenerationGrid();
     }
 
     @Test
     public void initFixedSizeGameTest() throws Exception {
         assertThat(game.getRows(), is(5));
         assertThat(game.getCols(), is(5));
-        assertThat(greed[0][0], is(0));
-        assertThat(greed[4][4], is(0));
+        assertThat(grid[0][0], is(0));
+        assertThat(grid[4][4], is(0));
     }
 
     @Test
     public void initAliveCellsTest() throws Exception {
         initAliveCellsForTestGame();
-        assertThat(greed[1][1], is(1));
-        assertThat(greed[1][2], is(1));
-        assertThat(greed[2][1], is(1));
-        assertThat(greed[2][3], is(1));
+        assertThat(grid[1][1], is(1));
+        assertThat(grid[1][2], is(1));
+        assertThat(grid[2][1], is(1));
+        assertThat(grid[2][3], is(1));
     }
 
     private void initAliveCellsForTestGame() {
@@ -48,10 +48,10 @@ public class GameOfLifeUnitTest {
     public void ifLiveCellHaveLessThenTwoLiveNeighbours_CellDies() throws Exception {
         initAliveCellsForTestGame();
         processBaseTestCells();
-        assertThat(nextGenerationGreed[1][1], is(1));
-        assertThat(nextGenerationGreed[1][2], is(1));
-        assertThat(nextGenerationGreed[2][1], is(1));
-        assertThat(nextGenerationGreed[2][3], is(0));
+        assertThat(nextGenerationgrid[1][1], is(1));
+        assertThat(nextGenerationgrid[1][2], is(1));
+        assertThat(nextGenerationgrid[2][1], is(1));
+        assertThat(nextGenerationgrid[2][3], is(0));
     }
 
     private void processBaseTestCells() {
@@ -65,10 +65,10 @@ public class GameOfLifeUnitTest {
     public void ifLiveCellHaveTwoOrThreeLiveNeighbours_CellAliveInNextGeneration() throws Exception {
         initAliveCellsForTestGame();
         processBaseTestCells();
-        assertThat(nextGenerationGreed[1][1], is(1));
-        assertThat(nextGenerationGreed[1][2], is(1));
-        assertThat(nextGenerationGreed[2][1], is(1));
-        assertThat(nextGenerationGreed[2][3], is(0));
+        assertThat(nextGenerationgrid[1][1], is(1));
+        assertThat(nextGenerationgrid[1][2], is(1));
+        assertThat(nextGenerationgrid[2][1], is(1));
+        assertThat(nextGenerationgrid[2][3], is(0));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class GameOfLifeUnitTest {
         intiAdditionalCellsForTestIfCellHaveMoreThenThreeNeighbours();
         processBaseTestCells();
         processAdditionalCellsForTestIfCellHaveMoreThenThreeNeighbours();
-        assertLiveCellHaveMoreThenThreeLiveNeighboursRuleTestCases(nextGenerationGreed);
+        assertLiveCellHaveMoreThenThreeLiveNeighboursRuleTestCases(nextGenerationgrid);
     }
 
     private void intiAdditionalCellsForTestIfCellHaveMoreThenThreeNeighbours() {
@@ -90,13 +90,13 @@ public class GameOfLifeUnitTest {
         game.processCell(1, 0);
     }
 
-    private void assertLiveCellHaveMoreThenThreeLiveNeighboursRuleTestCases(int[][] greed) {
-        assertThat(greed[1][1], is(0));
-        assertThat(greed[1][2], is(0));
-        assertThat(greed[2][1], is(1));
-        assertThat(greed[2][3], is(0));
-        assertThat(greed[0][1], is(1));
-        assertThat(greed[1][0], is(1));
+    private void assertLiveCellHaveMoreThenThreeLiveNeighboursRuleTestCases(int[][] grid) {
+        assertThat(grid[1][1], is(0));
+        assertThat(grid[1][2], is(0));
+        assertThat(grid[2][1], is(1));
+        assertThat(grid[2][3], is(0));
+        assertThat(grid[0][1], is(1));
+        assertThat(grid[1][0], is(1));
     }
 
     @Test
@@ -106,14 +106,14 @@ public class GameOfLifeUnitTest {
         processBaseTestCells();
         processAdditionalCellsForTestIfCellHaveMoreThenThreeNeighbours();
         processAdditionalCellsForTestIfDeadCellHaveThreeAliveNeighbours();
-        assertLiveCellHaveMoreThenThreeLiveNeighboursRuleTestCases(nextGenerationGreed);
-        assertAdditionalCellsForIfDeadCellHaveThreeAliveNeighbours(nextGenerationGreed);
+        assertLiveCellHaveMoreThenThreeLiveNeighboursRuleTestCases(nextGenerationgrid);
+        assertAdditionalCellsForIfDeadCellHaveThreeAliveNeighbours(nextGenerationgrid);
     }
 
-    private void assertAdditionalCellsForIfDeadCellHaveThreeAliveNeighbours(int[][] greed) {
-        assertThat(greed[0][0], is(1));
-        assertThat(greed[0][2], is(1));
-        assertThat(greed[2][0], is(1));
+    private void assertAdditionalCellsForIfDeadCellHaveThreeAliveNeighbours(int[][] grid) {
+        assertThat(grid[0][0], is(1));
+        assertThat(grid[0][2], is(1));
+        assertThat(grid[2][0], is(1));
     }
 
     private void processAdditionalCellsForTestIfDeadCellHaveThreeAliveNeighbours() {
@@ -127,15 +127,15 @@ public class GameOfLifeUnitTest {
         initAliveCellsForTestGame();
         intiAdditionalCellsForTestIfCellHaveMoreThenThreeNeighbours();
         game.createNextGeneration();
-        greed = game.getGreed();
-        assertLiveCellHaveMoreThenThreeLiveNeighboursRuleTestCases(greed);
-        assertAdditionalCellsForIfDeadCellHaveThreeAliveNeighbours(greed);
-        assertThat(greed[1][1], is(0));
-        assertThat(greed[1][2], is(0));
-        assertThat(greed[2][2], is(0));
-        assertThat(greed[2][3], is(0));
-        assertThat(greed[3][3], is(0));
-        assertThat(greed[4][0], is(0));
-        assertThat(greed[4][4], is(0));
+        grid = game.getGrid();
+        assertLiveCellHaveMoreThenThreeLiveNeighboursRuleTestCases(grid);
+        assertAdditionalCellsForIfDeadCellHaveThreeAliveNeighbours(grid);
+        assertThat(grid[1][1], is(0));
+        assertThat(grid[1][2], is(0));
+        assertThat(grid[2][2], is(0));
+        assertThat(grid[2][3], is(0));
+        assertThat(grid[3][3], is(0));
+        assertThat(grid[4][0], is(0));
+        assertThat(grid[4][4], is(0));
     }
 }
