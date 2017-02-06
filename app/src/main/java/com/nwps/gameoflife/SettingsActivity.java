@@ -1,12 +1,12 @@
 package com.nwps.gameoflife;
 
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
+import android.support.v7.app.AppCompatActivity;
 
-public class PreferencesActivity extends PreferenceFragment{
+public class SettingsActivity extends AppCompatActivity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.settings);
+
     }
 }
